@@ -8,7 +8,7 @@ import ContactForm from "../components/ContactForm";
 
 const Home = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
-
+  console.log(animationComplete);
   return (
     <div>
       <GreetingsAnimation onComplete={() => setAnimationComplete(true)} />

@@ -37,7 +37,7 @@ const projects = [
 
 const ProjectSection = () => {
   const containerRef = useRef(null);
-  const projectRefs = useRef([]);
+  const projectRefs = useRef<(HTMLElement | null)[]>([]);
   const [activeTheme, setActiveTheme] = useState(projects[0].theme);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const ProjectSection = () => {
       );
     });
 
-    const changeTheme = (theme) => {
+    const changeTheme = (theme: any) => {
       gsap.to(containerRef.current, {
         backgroundColor: theme.background,
         color: theme.text,
