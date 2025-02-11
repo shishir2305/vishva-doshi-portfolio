@@ -1,0 +1,191 @@
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a; /* Soothing dark color */
+  color: white;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  background-color: white;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+}
+
+/* home intro section */
+.container {
+  height: 100%;
+  width: 100%;
+  background-color: #1a1a1a; /* Soothing dark color */
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+}
+
+.hamburger-menu .bar {
+  width: 100%;
+  height: 3px; /* Reduced height for a cleaner look */
+  background-color: #61dbfb;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger-menu .bar:hover {
+  cursor: pointer;
+}
+
+.hamburger-menu .bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu .bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu .bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Sidebar Menu */
+.menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px; /* Reduced from full screen */
+  height: 100%;
+  background-color: #1a1a1a; /* Soothing dark color */
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Enhanced animation */
+  z-index: 999;
+}
+
+.menu.open {
+  transform: translateX(0);
+}
+
+/* Sidebar Menu Links */
+.menu a {
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu a:hover {
+  color: #61dbfb;
+  transform: translateX(-5px);
+}
+
+.intro-section {
+  font-family: Arial, sans-serif;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.content {
+  max-width: 75%;
+  font-size: 4rem;
+  font-weight: 300;
+  text-align: start;
+  color: white;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.google {
+  color: #34a853;
+  font-weight: 600;
+}
+
+.mckinsey {
+  color: #34a853;
+  font-weight: 600;
+}
+
+.tags {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+.location {
+  margin-top: 20px;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.works {
+  margin-top: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #e0e0e0;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .intro-section {
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .content {
+    max-width: 100%;
+    font-size: 2.25rem; /* Reduced font size for mobile */
+  }
+
+  .menu a {
+    font-size: 1rem; /* Reduced size for the sidebar links */
+  }
+
+  .tag {
+    font-size: 0.8rem; /* Smaller tag text */
+    padding: 8px 16px;
+  }
+
+  .location {
+    font-size: 0.8rem;
+  }
+
+  .works {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,81 @@
+.about-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem;
+  background-color: #1a1a1a; /* Soothing dark color */
+  color: #fff;
+  overflow: hidden;
+}
+
+.about-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-image {
+  flex: 1;
+  margin-right: 2rem;
+  opacity: 0; /* initial state for GSAP animation */
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+}
+
+.about-content {
+  flex: 1;
+  margin-left: 2rem;
+  opacity: 0; /* initial state for GSAP animation */
+}
+
+.about-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #fff, #61dbfb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-content .location {
+  font-size: 1.5rem;
+  color: #888;
+}
+
+.icons-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skill-icon {
+  font-size: 2rem;
+  /* Animations are handled by Framer Motion */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-main {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-image,
+  .about-content {
+    margin: 0;
+  }
+  .about-image {
+    margin-bottom: 2rem;
+  }
+}
