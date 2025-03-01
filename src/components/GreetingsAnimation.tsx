@@ -17,16 +17,16 @@ const GreetingsAnimation = ({ onComplete }: IntroAnimationProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => prevIndex + 1);
-    }, 200);
+    }, 300); // Changed from 200 to 400
 
     setTimeout(() => {
       gsap.to(".intro", {
         y: "-100%",
-        duration: 1,
+        duration: 1.5, // Changed from 1 to 2
         ease: "power3.inOut",
         onComplete: onComplete,
       });
-    }, greetings.length * 200);
+    }, greetings.length * 300); // Changed from 200 to 400
 
     return () => clearInterval(interval);
   }, [onComplete, greetings.length]);

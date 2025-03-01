@@ -40,23 +40,14 @@
   color: #0077b5;
 } /* LinkedIn */
 .social-icons a:nth-child(2):hover {
-  color: #1da1f2;
-} /* Twitter */
+  color: #3b4c5e;
+}
 .social-icons a:nth-child(3):hover {
-  color: #e1306c;
+  color: #6c63ff;
 } /* Instagram */
 .social-icons a:nth-child(4):hover {
   color: #ea4c89;
 } /* Dribbble */
-.social-icons a:nth-child(5):hover {
-  color: #24292e;
-} /* GitHub */
-.social-icons a:nth-child(6):hover {
-  color: #1877f2;
-} /* Facebook */
-.social-icons a:nth-child(7):hover {
-  color: #ff0000;
-} /* YouTube */
 
 /* Contact Header Text */
 .contact-header h2 {
@@ -79,6 +70,14 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
+}
+
+/* Add these styles to ensure consistent typography */
+.form-container input,
+.form-container textarea {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .name-group {

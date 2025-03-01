@@ -64,9 +64,14 @@ const IntroSection = () => {
           <span className="tag">Motion</span>
         </div>
         <div className="location">Based in London, United Kingdom</div>
-        <a href="#projects" className="works">
-          See Selected Works ↓
-        </a>
+        <div className="cta-container">
+          <a href="#projects" className="works">
+            See Selected Works ↓
+          </a>
+          <a href="#contact" className="works">
+            Get in Touch ↓
+          </a>
+        </div>
         <div className="custom-cursor"></div>
       </div>
     </div>

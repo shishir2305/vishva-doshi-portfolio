@@ -1,15 +1,8 @@
 import { useState } from "react";
-import {
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-  FaDribbble,
-  FaGithub,
-  FaFacebook,
-  FaYoutube,
-} from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaDribbble, FaGithub } from "react-icons/fa";
 import "../styles/contactFormStyles.css";
 import clientImage from "../assets/dummy-image.jpg"; // Replace with actual image
+// import { FaEnvelope } from "react-icons/fa6";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -56,23 +49,14 @@ const ContactSection = () => {
           <a href="#" aria-label="LinkedIn">
             <FaLinkedin />
           </a>
-          <a href="#" aria-label="Twitter">
-            <FaTwitter />
-          </a>
-          <a href="#" aria-label="Instagram">
-            <FaInstagram />
-          </a>
-          <a href="#" aria-label="Dribbble">
-            <FaDribbble />
-          </a>
           <a href="#" aria-label="GitHub">
             <FaGithub />
           </a>
-          <a href="#" aria-label="Facebook">
-            <FaFacebook />
+          <a href="#" aria-label="Gmail">
+            <FaEnvelope />
           </a>
-          <a href="#" aria-label="YouTube">
-            <FaYoutube />
+          <a href="#" aria-label="Dribbble">
+            <FaDribbble />
           </a>
         </div>
         <h2>Let's build something great together!</h2>

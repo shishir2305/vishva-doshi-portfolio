@@ -114,7 +114,7 @@ const ProjectSection = () => {
                     className="project-number"
                     style={{ backgroundColor: activeTheme.accent }}
                   >
-                    {project.id}/03
+                    {project.id}
                   </div>
                 </div>
               </>
@@ -126,7 +126,7 @@ const ProjectSection = () => {
                     className="project-number"
                     style={{ backgroundColor: activeTheme.accent }}
                   >
-                    {project.id}/03
+                    {project.id}
                   </div>
                 </div>
                 <div className="text-content">

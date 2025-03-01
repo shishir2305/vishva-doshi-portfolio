@@ -46,7 +46,7 @@
 .hamburger-menu .bar {
   width: 100%;
   height: 3px; /* Reduced height for a cleaner look */
-  background-color: #61dbfb;
+  background-color: white;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -80,7 +80,7 @@
   flex-direction: column;
   padding: 2rem;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Enhanced animation */
+  transition: transform cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Enhanced animation */
   z-index: 999;
 }
 
@@ -91,10 +91,15 @@
 /* Sidebar Menu Links */
 .menu a {
   color: #e0e0e0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 1.5rem;
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
+  text-align: right;
+}
+
+.menu a:first-child {
+  margin-top: 3rem;
 }
 
 .menu a:hover {
@@ -150,6 +155,11 @@
   margin-top: 20px;
   color: #777;
   font-size: 0.9rem;
+}
+
+.cta-container {
+  display: flex;
+  gap: 20px;
 }
 
 .works {
