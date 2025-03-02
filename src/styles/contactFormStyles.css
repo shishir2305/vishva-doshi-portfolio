@@ -155,4 +155,91 @@ textarea {
   .name-group input {
     width: 100%;
   }
+
+  .contact-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .contact-header p {
+    font-size: 0.95rem;
+  }
+
+  .contact-wrapper {
+    padding: 3rem 1rem;
+  }
+
+  .social-icons a {
+    font-size: 1.25rem;
+  }
+
+  .contact-header .client-image {
+    width: 65px;
+    height: 65px;
+  }
+
+  input,
+  textarea {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .send-btn {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Additional breakpoints */
+@media (max-width: 400px) {
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  .contact-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-header p {
+    font-size: 0.85rem;
+  }
+
+  .contact-wrapper {
+    padding: 2rem 0.75rem;
+  }
+
+  .contact-header .client-image {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .form-container {
+    max-width: 450px;
+  }
+
+  .contact-header h2 {
+    font-size: 1.85rem;
+  }
+
+  .contact-wrapper {
+    padding: 3.5rem 1.5rem;
+  }
+}
+
+/* For larger screens */
+@media (min-width: 1200px) {
+  .form-container {
+    max-width: 550px;
+    padding: 3rem;
+  }
+
+  .contact-header .client-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .contact-header h2 {
+    font-size: 2.25rem;
+  }
 }

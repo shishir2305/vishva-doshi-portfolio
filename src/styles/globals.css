@@ -1,0 +1,60 @@
+:root {
+  --font-primary: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu,
+    Cantarell, "Noto Sans", sans-serif;
+
+  /* Responsive font sizes */
+  --fs-xl: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-lg: clamp(2rem, 4vw, 3.5rem);
+  --fs-md: clamp(1.25rem, 2vw, 1.75rem);
+  --fs-sm: clamp(0.9rem, 1.5vw, 1.15rem);
+  --fs-xs: clamp(0.75rem, 1vw, 0.9rem);
+
+  /* Spacing variables */
+  --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --spacing-sm: clamp(0.75rem, 1.5vw, 1.25rem);
+  --spacing-md: clamp(1.25rem, 2.5vw, 2rem);
+  --spacing-lg: clamp(2rem, 4vw, 4rem);
+  --spacing-xl: clamp(3rem, 6vw, 6rem);
+}
+
+/* Base styles for better responsiveness */
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container sizing */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+/* Responsive utility classes */
+.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hide-mobile {
+    display: block;
+  }
+
+  .hide-desktop {
+    display: none;
+  }
+}

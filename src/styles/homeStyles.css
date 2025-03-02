@@ -205,3 +205,87 @@
     font-size: 0.9rem;
   }
 }
+
+/* Additional breakpoints */
+@media (max-width: 480px) {
+  .intro {
+    font-size: 3rem;
+  }
+
+  .dot {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .content {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hamburger-menu {
+    top: 15px;
+    right: 15px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .menu {
+    width: 250px;
+    padding: 1.5rem;
+  }
+
+  .menu a {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .menu a:first-child {
+    margin-top: 2rem;
+  }
+
+  .tags {
+    margin-top: 16px;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+
+  .works {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .content {
+    max-width: 85%;
+    font-size: 3rem;
+  }
+
+  .menu {
+    width: 280px;
+  }
+
+  .tag {
+    padding: 8px 18px;
+  }
+}
+
+/* For large screens */
+@media (min-width: 1440px) {
+  .content {
+    font-size: 4.5rem;
+    max-width: 70%;
+  }
+
+  .tag {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  .works {
+    font-size: 1.1rem;
+  }
+}
