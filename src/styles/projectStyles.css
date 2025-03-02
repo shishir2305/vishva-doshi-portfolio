@@ -6,7 +6,9 @@
 
 .project-heading {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
 .project-section {
@@ -46,7 +48,7 @@
   right: 2rem;
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.1rem;
   backdrop-filter: blur(4px);
 }
@@ -59,14 +61,17 @@
 }
 
 .text-content h2 {
-  font-size: 2.7rem;
+  font-size: 2.5rem;
   line-height: 1.2;
   margin: 0;
+  font-weight: 600;
 }
 
 .text-content p {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 button {
@@ -74,10 +79,11 @@ button {
   padding: 1rem 2rem;
   border: none;
   border-radius: 50px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease;
+  font-family: var(--font-primary);
 }
 
 button:hover {

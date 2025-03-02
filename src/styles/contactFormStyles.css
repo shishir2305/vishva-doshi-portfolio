@@ -51,15 +51,17 @@
 
 /* Contact Header Text */
 .contact-header h2 {
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-size: 2rem;
+  font-weight: 600;
   color: #ddd;
+  margin-bottom: 0.75rem;
 }
 
 .contact-header p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #ddd;
   margin-bottom: 1.5rem;
+  font-weight: 400;
 }
 
 /* Form Styling */
@@ -72,11 +74,11 @@
   max-width: 500px;
 }
 
-/* Add these styles to ensure consistent typography */
+/* Update these styles to ensure consistent typography */
 .form-container input,
 .form-container textarea {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  font-size: 16px;
+  font-family: var(--font-primary);
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -99,6 +101,7 @@ textarea {
   margin-bottom: 1rem;
   transition: all 0.3s ease;
   outline: none;
+  font-family: var(--font-primary);
 }
 
 input:focus,
@@ -117,12 +120,14 @@ textarea {
   width: 100%;
   padding: 1rem;
   font-size: 1rem;
+  font-weight: 500;
   background: #6c63ff;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
+  font-family: var(--font-primary);
 }
 
 .send-btn:hover {
@@ -134,7 +139,7 @@ textarea {
   margin-top: 1rem;
   font-size: 1rem;
   color: #28a745;
-  font-weight: bold;
+  font-weight: 500;
   transition: opacity 0.3s ease;
 }
 
