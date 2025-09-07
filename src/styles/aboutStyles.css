@@ -1,158 +1,903 @@
-.about-section {
+/* Dashboard layout for About section (two rows of gradient cards) */
+.about-dashboard {
+  --bg: #0b0b0f;
+  --card: #11121a;
+  --muted: #8a8fa3;
+  --ring: 255 255 255;
+  --grad-1: linear-gradient(135deg, #11121a, #1b1f34 60%, #131826);
+  --grad-2: radial-gradient(
+      1000px 600px at -10% -10%,
+      rgba(88, 101, 242, 0.15),
+      transparent 40%
+    ),
+    radial-gradient(
+      800px 500px at 120% 20%,
+      rgba(0, 212, 255, 0.12),
+      transparent 50%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  background: var(--bg);
+  color: #e9ecf1;
+  padding: 56px 24px;
+}
+
+.row {
+  display: grid;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row-top {
+  grid-template-columns: 2fr 1fr;
+  align-items: stretch;
+}
+
+.row-bottom {
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 28px; /* spacing between first and second row */
+}
+
+.card {
+  background: var(--grad-1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   position: relative;
-  min-height: 100vh;
-  padding: 4rem;
-  background-color: #1a1a1a; /* Soothing dark color */
+  overflow: hidden;
+  padding: 20px;
+  isolation: isolate;
+  transition: transform 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 180deg,
+    rgba(88, 101, 242, 0.5),
+    rgba(0, 212, 255, 0.4),
+    rgba(88, 101, 242, 0.5)
+  );
+  filter: blur(24px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+}
+
+.card:hover::before {
+  opacity: 0.55;
+}
+
+/* Make specific cards flat black (no gradient) */
+.about-card,
+.time-card,
+.now-card {
+  background: #0f1117; /* soothing black */
+}
+.about-card::before,
+.about-card:hover::before,
+.time-card::before,
+.time-card:hover::before,
+.now-card::before,
+.now-card:hover::before {
+  opacity: 0 !important; /* remove glow/gradient effect */
+}
+
+/* gentle hover for flat black cards */
+.about-card:hover,
+.time-card:hover,
+.now-card:hover {
+  background: #121726;
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* Hero card */
+.hero-card {
+  padding: 24px;
+  /* soft dusk gradient (rose + cyan tints) */
+  background: radial-gradient(
+      900px 520px at -15% -20%,
+      rgba(244, 114, 182, 0.1),
+      transparent 46%
+    ),
+    radial-gradient(
+      760px 420px at 120% 0%,
+      rgba(56, 189, 248, 0.12),
+      transparent 56%
+    ),
+    linear-gradient(135deg, #0f1324 0%, #151c2f 48%, #191532 100%);
+  transition: background 0.45s ease; /* allow smooth gradient shift on hover */
+}
+/* richer, crisper gradient on hover for the outer container */
+.hero-card:hover {
+  background: radial-gradient(
+      1000px 600px at -20% -30%,
+      rgba(244, 114, 182, 0.18),
+      transparent 48%
+    ),
+    radial-gradient(
+      880px 520px at 120% -10%,
+      rgba(56, 189, 248, 0.16),
+      transparent 58%
+    ),
+    linear-gradient(135deg, #0e1733 0%, #162248 52%, #1a1a3f 100%);
+}
+.hero-card .status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+.status-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+}
+
+.about-hero-content {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-left h1 {
+  font-size: 2.2rem;
+  margin: 0 0 6px;
+}
+.hero-left .name {
+  background: linear-gradient(90deg, #fff, #61dbfb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-left .subtitle {
+  color: #c8d1e6;
+  margin-bottom: 8px;
+}
+.hero-left .desc {
+  color: var(--muted);
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e9ecf1;
+}
+.btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.btn.primary {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+.btn.primary:hover {
+  filter: brightness(1.08);
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-inline: auto;
+  /* soft floating animation for the profile image */
+  animation: soft-bob 6s ease-in-out infinite;
+  will-change: transform;
+}
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+.avatar-wrap .glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 32px;
+  background: var(--grad-2);
+  opacity: 0.7;
+  filter: blur(16px);
+  z-index: -1;
+}
+
+/* gentle up-down motion */
+@keyframes soft-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .avatar-wrap {
+    animation: none;
+  }
+}
+
+/* About card */
+.about-card h3 {
+  margin: 6px 0 10px;
+  font-size: 1.25rem;
+}
+.about-card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+.tools {
+  margin-top: 16px;
+}
+.tools-title {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #c8d1e6;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e9ecf1;
+  font-size: 0.85rem;
+}
+.badge:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Bottom row cards */
+.time-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.time-readout {
+  text-align: center;
+}
+.time {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.tz {
+  color: var(--muted);
+  margin-top: 4px;
+  font-size: 0.9rem;
+}
+
+.now-card {
+  display: flex;
+  flex-direction: column;
+}
+.now-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #c8d1e6;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.now-header .dot.red {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 10px #ef4444;
+}
+.now-body .muted {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 6px;
+}
+.now-body .current {
+  color: #e9ecf1;
+}
+
+.link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  padding: 20px;
+  background: var(--grad-1);
+  overflow: hidden;
+}
+.link-card .icon-bubble {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff;
+  font-size: 1.1rem;
+  transform: translateY(2px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: transform 0.25s ease, background-color 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.link-card .title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+.link-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.link-card:hover .title {
+  transform: translateY(-1px);
+}
+/* subtle variant glows */
+.link-card.projects::after,
+.link-card.experiences::after,
+.link-card.skills::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.25;
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+.link-card.projects::after {
+  background: radial-gradient(
+    120px 80px at 10% 90%,
+    rgba(99, 102, 241, 0.6),
+    transparent 60%
+  );
+}
+.link-card.experiences::after {
+  background: radial-gradient(
+    120px 80px at 10% 90%,
+    rgba(16, 185, 129, 0.6),
+    transparent 60%
+  );
+}
+.link-card.skills::after {
+  background: radial-gradient(
+    120px 80px at 10% 90%,
+    rgba(234, 179, 8, 0.7),
+    transparent 60%
+  );
+}
+.link-card:hover::after {
+  opacity: 0.35;
+  filter: blur(1px);
+}
+
+/* avoid double conic glow on link cards */
+.link-card:hover::before {
+  opacity: 0;
+}
+
+/* variant icon-bubble tints */
+.link-card.projects .icon-bubble {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.35);
+}
+.link-card.experiences .icon-bubble {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+.link-card.skills .icon-bubble {
+  background: rgba(234, 179, 8, 0.22);
+  border-color: rgba(234, 179, 8, 0.45);
+}
+
+/* subtle icon motion + tint on hover */
+.link-card.projects:hover .icon-bubble {
+  background: rgba(99, 102, 241, 0.28);
+  border-color: rgba(99, 102, 241, 0.55);
+  transform: translateX(3px);
+}
+.link-card.experiences:hover .icon-bubble {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: rgba(16, 185, 129, 0.55);
+  transform: translateX(3px);
+}
+.link-card.skills:hover .icon-bubble {
+  background: rgba(234, 179, 8, 0.32);
+  border-color: rgba(234, 179, 8, 0.6);
+  transform: translateX(3px);
+}
+
+/* slightly reduce hero glow on hover */
+.hero-card:hover::before {
+  opacity: 0.25; /* keep the new background the star */
+}
+
+/* Per-card soothing gradients */
+.link-card.projects {
+  background: radial-gradient(
+      600px 360px at 110% 120%,
+      rgba(99, 102, 241, 0.14),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #121528 0%, #1b1f3b 52%, #121528 100%);
+}
+.link-card.experiences {
+  background: radial-gradient(
+      600px 360px at 110% 120%,
+      rgba(16, 185, 129, 0.14),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #0f1a17 0%, #152a24 52%, #0f1a17 100%);
+}
+.link-card.skills {
+  background: radial-gradient(
+      600px 360px at 110% 120%,
+      rgba(234, 179, 8, 0.16),
+      transparent 60%
+    ),
+    linear-gradient(135deg, #1a1508 0%, #241d0a 52%, #1a1508 100%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .row-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .row-bottom {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .row-bottom {
+    grid-template-columns: 1fr;
+  }
+  .avatar-wrap {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Row 3 - Education and Journey */
+.row-education-journey {
+  grid-template-columns: 2fr 1fr;
+  margin-top: 28px;
+  align-items: stretch;
+}
+
+/* Education Card */
+.education-card {
+  background: #0f1117;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.education-card::before,
+.education-card:hover::before {
+  opacity: 0 !important;
+}
+
+.education-card:hover {
+  background: #121726;
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.education-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e9ecf1;
+}
+
+.education-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.university-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.university-logo {
+  flex-shrink: 0;
+}
+
+.purdue-logo {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #cfa135, #b8860b);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(207, 161, 53, 0.3);
+}
+
+.university-details h4 {
+  margin: 0 0 4px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e9ecf1;
+}
+
+.university-details .degree {
+  margin: 0;
+  font-style: italic;
+  color: #8a8fa3;
+  font-size: 1rem;
+}
+
+.majors-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.major-badge {
+  padding: 8px 16px;
+  background: rgba(100, 100, 100, 0.3);
+  border: 1px solid rgba(150, 150, 150, 0.4);
+  border-radius: 8px;
+  color: #c8d1e6;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.honors-section {
+  margin-top: 8px;
+}
+
+.honors-section h5 {
+  margin: 0 0 16px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e9ecf1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+}
+
+.honors-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.honor-badge {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid;
+}
+
+.honor-badge.dean {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.4);
+  color: #ffd700;
+}
+
+.honor-badge.data {
+  background: rgba(70, 130, 180, 0.15);
+  border-color: rgba(70, 130, 180, 0.4);
+  color: #87ceeb;
+}
+
+.honor-badge.entrepreneur {
+  background: rgba(220, 20, 60, 0.15);
+  border-color: rgba(220, 20, 60, 0.4);
+  color: #ff69b4;
+}
+
+/* Journey Card */
+.journey-card {
+  background: #0f1117;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.journey-card::before,
+.journey-card:hover::before {
+  opacity: 0 !important;
+}
+
+.journey-card:hover {
+  background: #121726;
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.journey-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.journey-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 12px #22c55e;
+}
+
+.journey-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e9ecf1;
+}
+
+.journey-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earth-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.earth {
+  width: 100%;
+  height: 100%;
+  background: 
+    /* Ocean/water gradient */ radial-gradient(
+      circle at 40% 30%,
+      #2b5f9e,
+      #1c4a78,
+      #0f2a44
+    ),
+    /* Base darker blue */ #0f2a44;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: inset -15px -15px 30px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 15px rgba(255, 255, 255, 0.1), 0 0 25px rgba(43, 95, 158, 0.4);
   overflow: hidden;
 }
 
-.about-main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
-.about-image {
-  flex: 1;
-  margin-right: 2rem;
-  opacity: 0; /* initial state for GSAP animation */
-}
-
-.about-image img {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  object-fit: cover;
-}
-
-.about-content {
-  flex: 1;
-  margin-left: 2rem;
-  opacity: 0; /* initial state for GSAP animation */
-}
-
-.about-content h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, #fff, #61dbfb);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.about-content .location {
-  font-size: 1.5rem;
-  color: #888;
-}
-
-.icons-container {
+/* More realistic continent shapes */
+.earth::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 25%;
+  left: 10%;
+  width: 35%;
+  height: 45%;
+  background: #2d5a2d;
+  border-radius: 45% 55% 60% 40%;
+  opacity: 0.9;
+  transform: rotate(-15deg);
+}
+
+.earth::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  right: 15%;
+  width: 40%;
+  height: 50%;
+  background: #2d5a2d;
+  border-radius: 60% 40% 70% 30%;
+  opacity: 0.85;
+  transform: rotate(10deg);
+}
+
+/* Additional continent pieces for more realistic look */
+.earth {
+  background: 
+    /* Small landmass */ radial-gradient(
+      ellipse 20px 15px at 65% 20%,
+      #2d5a2d 40%,
+      transparent 41%
+    ),
+    /* Another small piece */
+      radial-gradient(
+        ellipse 15px 25px at 25% 70%,
+        #2d5a2d 40%,
+        transparent 41%
+      ),
+    /* Main ocean gradient */
+      radial-gradient(circle at 40% 30%, #2b5f9e, #1c4a78, #0f2a44);
+  animation: earth-rotate 30s linear infinite;
+}
+
+.location-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 10;
+  border: 2px solid;
+}
+
+.india-dot {
+  top: 35%;
+  right: 25%;
+  background: #ff6b35;
+  border-color: #ffb347;
+  box-shadow: 0 0 12px #ff6b35, 0 0 25px rgba(255, 107, 53, 0.5);
+}
+
+.usa-dot {
+  top: 30%;
+  left: 25%;
+  background: #4a90e2;
+  border-color: #87ceeb;
+  box-shadow: 0 0 12px #4a90e2, 0 0 25px rgba(74, 144, 226, 0.5);
+}
+
+.dot-pulse {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 1;
+  border-radius: 50%;
+  background: inherit;
+  border: inherit;
+  animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
-.skill-icon {
-  font-size: 2rem;
-  /* Animations are handled by Framer Motion */
+@keyframes earth-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* Responsive adjustments */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.8;
+  }
+}
+
+/* Responsive adjustments for education and journey */
+@media (max-width: 1024px) {
+  .row-education-journey {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .university-info {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .earth-container {
+    width: 160px;
+    height: 160px;
+  }
+}
+
 @media (max-width: 768px) {
-  .about-main {
+  .majors-row {
     flex-direction: column;
-    text-align: center;
-  }
-  .about-image,
-  .about-content {
-    margin: 0;
-  }
-  .about-image {
-    margin-bottom: 2rem;
+    align-items: flex-start;
   }
 
-  .about-section {
-    padding: 3rem 2rem;
+  .major-badge {
+    align-self: flex-start;
   }
 
-  .about-content h1 {
-    font-size: 2.5rem;
+  .honors-badges {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .about-content .location {
-    font-size: 1.25rem;
+  .honor-badge {
+    align-self: flex-start;
   }
 
-  .skill-icon {
-    font-size: 1.5rem;
+  .earth-container {
+    width: 140px;
+    height: 140px;
   }
 }
 
-/* Additional breakpoints */
-@media (max-width: 480px) {
-  .about-section {
-    padding: 2rem 1rem;
+@media (max-width: 520px) {
+  .education-card,
+  .journey-card {
+    padding: 20px;
   }
 
-  .about-content h1 {
-    font-size: 2rem;
+  .university-info {
+    gap: 12px;
   }
 
-  .about-content .location {
-    font-size: 1rem;
+  .purdue-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
   }
 
-  .skill-icon {
-    font-size: 1.25rem;
+  .university-details h4 {
+    font-size: 1.2rem;
   }
 
-  .about-image img {
-    max-width: 100%;
-    border-radius: 12px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .about-section {
-    padding: 3.5rem 3rem;
-  }
-
-  .about-image {
-    margin-right: 1.5rem;
-  }
-
-  .about-content {
-    margin-left: 1.5rem;
-  }
-
-  .about-content h1 {
-    font-size: 3rem;
-  }
-}
-
-/* For larger screens */
-@media (min-width: 1440px) {
-  .about-section {
-    padding: 5rem;
-  }
-
-  .about-main {
-    max-width: 1400px;
-  }
-
-  .about-content h1 {
-    font-size: 4rem;
-  }
-
-  .about-content .location {
-    font-size: 1.75rem;
+  .earth-container {
+    width: 120px;
+    height: 120px;
   }
 }

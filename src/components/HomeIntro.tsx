@@ -45,32 +45,58 @@ const IntroSection = () => {
             Contact
           </a>
         </div>
-        <div className="content">
-          <p>
-            I'm <span className="bold">Vishva</span>, a multi-disciplinary
-            designer with <span className="bold">7 years</span> of experience,
-            driven by curiosity.
-          </p>
-          <p>
-            Currently building products at{" "}
-            <span className="hover-text google">Google</span>, previously at{" "}
-            <span className="hover-text mckinsey">McKinsey &amp; Company</span>.
-          </p>
-        </div>
-        <div className="tags">
-          <span className="tag">6+ years of exp</span>
-          <span className="tag">Product Design</span>
-          <span className="tag">UX Strategy</span>
-          <span className="tag">Motion</span>
-        </div>
-        <div className="location">Based in London, United Kingdom</div>
-        <div className="cta-container">
-          <a href="#projects" className="works">
-            See Selected Works ↓
-          </a>
-          <a href="#contact" className="works">
-            Get in Touch ↓
-          </a>
+        <div className="hero-content">
+          <div className="intro-text">
+            <h1 className="hero-title">
+              I'm <span className="highlight-name">Vishva Doshi</span>,
+            </h1>
+            <h2 className="hero-subtitle">
+              Technologist & Data-Driven Problem Solver
+            </h2>
+          </div>
+
+          <div className="description">
+            <p className="description-text">
+              My work lives at the intersection of{" "}
+              <span className="accent-text">analytics</span>,{" "}
+              <span className="accent-text">product innovation</span>,{" "}
+              <span className="accent-text">project leadership</span>, and{" "}
+              <span className="accent-text">creative design</span>. Currently
+              building immersive experiences at{" "}
+              <span className="company-highlight">Dreamscape Learn</span>.
+            </p>
+          </div>
+
+          <div className="expertise-tags">
+            <div className="tag-row">
+              <span className="expertise-tag primary">
+                2+ years of Experience
+              </span>
+              <span className="expertise-tag">Data Analytics</span>
+              <span className="expertise-tag">UI/UX Design</span>
+            </div>
+            <div className="tag-row">
+              <span className="expertise-tag">Business Intelligence</span>
+              <span className="expertise-tag">Product Management</span>
+              <span className="expertise-tag">QA</span>
+            </div>
+          </div>
+
+          <div className="location-info">
+            <div className="location-indicator"></div>
+            <span className="location-text">Based in Arizona, USA</span>
+          </div>
+
+          <div className="cta-section">
+            <a href="#projects" className="cta-button primary">
+              <span className="cta-text">View Selected Works</span>
+              <span className="cta-arrow">↓</span>
+            </a>
+            <a href="#contact" className="cta-button secondary">
+              <span className="cta-text">Get in Touch</span>
+              <span className="cta-arrow">→</span>
+            </a>
+          </div>
         </div>
         <div className="custom-cursor"></div>
       </div>

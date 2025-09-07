@@ -1,145 +1,239 @@
-import { useEffect, useRef, useMemo } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  FaReact,
-  FaNodeJs,
-  FaCss3Alt,
-  FaHtml5,
-  FaJsSquare,
   FaGithub,
-  FaFigma,
-  FaPython,
+  FaLinkedin,
+  FaEnvelope,
+  FaCalendarAlt,
+  FaFolderOpen,
+  FaBriefcase,
+  FaTools,
 } from "react-icons/fa";
+import {
+  SiPython,
+  SiPytorch,
+  SiTensorflow,
+  SiScikitlearn,
+  SiMysql,
+} from "react-icons/si";
 import "../styles/aboutStyles.css";
-import profileImage from "../assets/dummy-image.jpg"; // change to your image
-
-gsap.registerPlugin(ScrollTrigger);
+import profileImage from "../assets/vishva image.jpg";
 
 const AboutSection = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const iconsRef = useRef<HTMLDivElement>(null);
-
+  // Live clock (updates every second)
+  const [now, setNow] = useState<Date>(new Date());
   useEffect(() => {
-    // Animate image from left
-    gsap.fromTo(
-      imageRef.current,
-      { opacity: 0, x: -100 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-        },
-      }
-    );
-    // Animate text from right
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, x: 100 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-        },
-      }
-    );
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
   }, []);
 
-  // Define your skill icons with final positions.
-  const skillIcons = [
-    { icon: <FaReact />, pos: { top: "5%", left: "5%" } },
-    { icon: <FaNodeJs />, pos: { top: "10%", right: "10%" } },
-    { icon: <FaHtml5 />, pos: { bottom: "15%", left: "10%" } },
-    { icon: <FaCss3Alt />, pos: { bottom: "10%", right: "12%" } },
-    { icon: <FaJsSquare />, pos: { top: "70%", left: "80%" } },
-    { icon: <FaGithub />, pos: { top: "80%", right: "15%" } },
-    { icon: <FaFigma />, pos: { bottom: "20%", right: "30%" } },
-    { icon: <FaPython />, pos: { bottom: "25%", left: "25%" } },
-  ];
-
-  // Create random offsets for the initial animation (computed once)
-  const iconOffsets = useMemo(
+  const timeString = useMemo(
     () =>
-      skillIcons.map(() => ({
-        x: Math.floor(Math.random() * 300 - 150), // random from -150 to 150
-        y: Math.floor(Math.random() * 300 - 150),
-      })),
+      now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+    [now]
+  );
+
+  const tz = useMemo(
+    () => Intl.DateTimeFormat().resolvedOptions().timeZone,
     []
   );
 
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="about-section" id="about" ref={sectionRef}>
-      <div className="about-main">
-        <div className="about-image" ref={imageRef}>
-          <img src={profileImage} alt="Vishva" />
+    <section className="about-dashboard" id="about" ref={sectionRef}>
+      {/* Row 1 */}
+      <div className="row row-top">
+        {/* Hero Card */}
+        <div className="card hero-card">
+          <div className="status-pill">
+            <span className="dot" /> Available for opportunities!!!
+          </div>
+
+          <div className="about-hero-content">
+            <div className="hero-left">
+              <h1>
+                Hi, I'm <span className="name">Vishva Doshi</span>
+              </h1>
+              <p className="subtitle">AI/ML Engineer & Data Scientist</p>
+              <p className="desc">
+                Specializing in predictive analytics, machine learning
+                applications, and innovative problem‑solving. I love building
+                delightful, impactful products.
+              </p>
+
+              <div className="cta-buttons">
+                <a className="btn ghost" href="#" aria-label="GitHub">
+                  <FaGithub /> GitHub
+                </a>
+                <a className="btn ghost" href="#" aria-label="LinkedIn">
+                  <FaLinkedin /> LinkedIn
+                </a>
+                <a
+                  className="btn ghost"
+                  href="mailto:hello@example.com"
+                  aria-label="Email"
+                >
+                  <FaEnvelope /> Email
+                </a>
+                <a className="btn primary" href="#" aria-label="Book a call">
+                  <FaCalendarAlt /> Book a call
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-right">
+              <div className="avatar-wrap">
+                <img src={profileImage} alt="Vishva" />
+                <div className="glow" />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="about-content" ref={textRef}>
-          <h1>hi, I'm Vishva</h1>
-          <p className="location">Based in Canada</p>
+
+        {/* About Card */}
+        <div className="card about-card">
+          <h3>About me</h3>
+          <p>
+            My journey into tech began with curiosity: how machines learn, how
+            data can predict, and how ideas become products. I'm an entrepreneur
+            at heart—rapid learning, bold thinking, and focus on building things
+            that matter.
+          </p>
+          <div className="tools">
+            <p className="tools-title">Primary tools</p>
+            <div className="badges">
+              <span className="badge">
+                <SiPython /> Python
+              </span>
+              <span className="badge">
+                <SiTensorflow /> TensorFlow
+              </span>
+              <span className="badge">
+                <SiPytorch /> PyTorch
+              </span>
+              <span className="badge">
+                <SiScikitlearn /> Scikit‑learn
+              </span>
+              <span className="badge">
+                <SiMysql /> SQL
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="icons-container" ref={iconsRef}>
-        {skillIcons.map((skill, index) => (
-          <motion.div
-            key={index}
-            className="skill-icon"
-            style={{ ...skill.pos, position: "absolute" }}
-            initial={{
-              x: iconOffsets[index].x,
-              y: iconOffsets[index].y,
-              scale: 0,
-              opacity: 0,
-            }}
-            whileInView={{
-              x: 0,
-              y: 0,
-              scale: 1,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: index * 0.2,
-              ease: "backOut",
-            }}
-            viewport={{ once: false, amount: 0.3 }}
-          >
-            {/* Twinkling overlay */}
-            <motion.div
-              className="twinkle"
-              style={{
-                position: "absolute",
-                top: "-10%",
-                left: "-10%",
-                right: "-10%",
-                bottom: "-10%",
-                borderRadius: "50%",
-                background:
-                  "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 80%)",
-                zIndex: -1,
-              }}
-              animate={{ opacity: [0, 1, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            {skill.icon}
-          </motion.div>
-        ))}
+
+      {/* Row 2 */}
+      <div className="row row-bottom">
+        <div className="card time-card">
+          <div className="time-readout">
+            <div className="time">{timeString}</div>
+            <div className="tz">{tz}</div>
+          </div>
+        </div>
+
+        <div className="card now-card">
+          <div className="now-header">
+            <span className="dot red" /> Now
+          </div>
+          <div className="now-body">
+            <p className="muted">what's that?</p>
+            <p className="current">
+              Currently working as AI Engineer intern, exploring ML systems and
+              productizing models.
+            </p>
+          </div>
+        </div>
+
+        <a className="card link-card projects" href="#projects">
+          <div className="icon-bubble" aria-hidden>
+            <FaFolderOpen />
+          </div>
+          <div className="title">Projects</div>
+        </a>
+        <a className="card link-card experiences" href="#experiences">
+          <div className="icon-bubble" aria-hidden>
+            <FaBriefcase />
+          </div>
+          <div className="title">Experiences</div>
+        </a>
+        <a className="card link-card skills" href="#skills">
+          <div className="icon-bubble" aria-hidden>
+            <FaTools />
+          </div>
+          <div className="title">Skills</div>
+        </a>
       </div>
-    </div>
+
+      {/* Row 3 - Education and Journey */}
+      <div className="row row-education-journey">
+        {/* Education Section */}
+        <div className="card education-card">
+          <div className="education-header">
+            <h3>Education</h3>
+          </div>
+
+          <div className="education-content">
+            <div className="university-info">
+              <div className="university-logo">
+                <div className="purdue-logo">
+                  <span className="logo-p">P</span>
+                </div>
+              </div>
+              <div className="university-details">
+                <h4>Arizona State University</h4>
+                <p className="degree">
+                  Masters in Information Technology with AI
+                </p>
+              </div>
+            </div>
+
+            <div className="majors-row">
+              <span className="major-badge">Information Technology</span>
+              <span className="major-badge">
+                Business Analytics & Information Management (BAIM)
+              </span>
+            </div>
+
+            <div className="honors-section">
+              <h5>Honors & Certificate Programs</h5>
+              <div className="honors-badges">
+                <span className="honor-badge dean">🏆 Dean's List</span>
+                <span className="honor-badge data">
+                  📊 Data Science Certificate Program
+                </span>
+                <span className="honor-badge entrepreneur">
+                  🚀 Entrepreneurship & Innovation Certificate Program
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Journey Section */}
+        <div className="card journey-card">
+          <div className="journey-header">
+            <span className="journey-dot"></span>
+            <h3>My Journey</h3>
+          </div>
+
+          <div className="journey-content">
+            <div className="earth-container">
+              <div className="earth">
+                <div className="location-dot india-dot" title="Gujarat, India">
+                  <div className="dot-pulse"></div>
+                </div>
+                <div className="location-dot usa-dot" title="Arizona, USA">
+                  <div className="dot-pulse"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
