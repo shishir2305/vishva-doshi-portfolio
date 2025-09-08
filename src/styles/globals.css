@@ -2,19 +2,19 @@
   --font-primary: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu,
     Cantarell, "Noto Sans", sans-serif;
 
-  /* Responsive font sizes */
-  --fs-xl: clamp(2.5rem, 5vw, 4.5rem);
-  --fs-lg: clamp(2rem, 4vw, 3.5rem);
-  --fs-md: clamp(1.25rem, 2vw, 1.75rem);
-  --fs-sm: clamp(0.9rem, 1.5vw, 1.15rem);
+  /* Responsive font sizes (compact) */
+  --fs-xl: clamp(2rem, 3.5vw, 3rem);
+  --fs-lg: clamp(1.6rem, 3vw, 2.4rem);
+  --fs-md: clamp(1.05rem, 1.8vw, 1.25rem);
+  --fs-sm: clamp(0.85rem, 1.2vw, 1rem);
   --fs-xs: clamp(0.75rem, 1vw, 0.9rem);
 
-  /* Spacing variables */
-  --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);
-  --spacing-sm: clamp(0.75rem, 1.5vw, 1.25rem);
-  --spacing-md: clamp(1.25rem, 2.5vw, 2rem);
-  --spacing-lg: clamp(2rem, 4vw, 4rem);
-  --spacing-xl: clamp(3rem, 6vw, 6rem);
+  /* Spacing variables (compact) */
+  --spacing-xs: clamp(0.4rem, 0.8vw, 0.6rem);
+  --spacing-sm: clamp(0.6rem, 1.2vw, 1rem);
+  --spacing-md: clamp(1rem, 2vw, 1.5rem);
+  --spacing-lg: clamp(1.4rem, 3vw, 2.5rem);
+  --spacing-xl: clamp(2rem, 5vw, 3.5rem);
 }
 
 /* Base styles for better responsiveness */

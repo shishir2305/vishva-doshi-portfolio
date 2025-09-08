@@ -11,30 +11,55 @@ interface IntroAnimationProps {
 }
 
 const GreetingsAnimation = ({ onComplete }: IntroAnimationProps) => {
-  const greetings = ["Hello", "olá", "नमस्ते", "Bonjour", "Hallo", "Ciao"];
+  const greetings = ["Hello", "Olá", "नमस्ते", "Bonjour", "Hallo", "Ciao"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    // Slightly faster to avoid repetition and keep it snappy
+    const intervalMs = 450;
+    const interval = window.setInterval(() => {
       setCurrentIndex((prevIndex) => prevIndex + 1);
-    }, 300); // Changed from 200 to 400
+    }, intervalMs);
 
-    setTimeout(() => {
+    const exitAt = greetings.length * intervalMs - 120; // finish before next loop
+    const timeoutId = window.setTimeout(() => {
+      // Stop cycling before exit to avoid showing the first greeting again
+      clearInterval(interval);
       gsap.to(".intro", {
         y: "-100%",
-        duration: 1.5, // Changed from 1 to 2
+        duration: 1.6,
         ease: "power3.inOut",
         onComplete: onComplete,
       });
-    }, greetings.length * 300); // Changed from 200 to 400
+    }, Math.max(800, exitAt));
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeoutId);
+    };
   }, [onComplete, greetings.length]);
+
+  // Soft fade/blur-in on each greeting swap
+  useEffect(() => {
+    gsap.fromTo(
+      ".greeting-text",
+      { opacity: 0, y: 8, filter: "blur(6px)" },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.5,
+        ease: "power2.out",
+      }
+    );
+  }, [currentIndex]);
 
   return (
     <div className="intro">
-      <span className="dot"></span>
-      {greetings[currentIndex % greetings.length]}
+      <span className="dot" aria-hidden="true"></span>
+      <span className="greeting-text" key={currentIndex}>
+        {greetings[currentIndex % greetings.length]}
+      </span>
     </div>
   );
 };

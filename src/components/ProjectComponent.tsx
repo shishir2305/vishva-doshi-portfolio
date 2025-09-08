@@ -97,6 +97,7 @@ const ProjectSection = () => {
   const currentBgRef = useRef<string>(projects[0].theme.background);
 
   useEffect(() => {
+    const disposables: any[] = [];
     const changeTheme = (theme: Project["theme"]) => {
       if (!containerRef.current) return;
       if (currentBgRef.current === theme.background) return; // avoid redundant transitions
@@ -112,16 +113,27 @@ const ProjectSection = () => {
 
     projects.forEach((project, index) => {
       // Single theme change when section becomes active (forward/back)
-      ScrollTrigger.create({
+      const themeST = ScrollTrigger.create({
         trigger: projectRefs.current[index],
-        start: "top center",
-        end: "bottom center",
+        // Activate around the middle band for a more natural theme switch
+        start: "top 70%",
+        end: "bottom 30%",
         onEnter: () => changeTheme(project.theme),
         onEnterBack: () => changeTheme(project.theme),
+        // Hand off theme cleanly when leaving the band
+        onLeave: () => {
+          const next = projects[index + 1];
+          if (next) changeTheme(next.theme);
+        },
+        onLeaveBack: () => {
+          const prev = projects[index - 1];
+          if (prev) changeTheme(prev.theme);
+        },
       });
+      disposables.push(themeST);
 
       // Smooth section reveal animation
-      gsap.fromTo(
+      const sectionTween = gsap.fromTo(
         projectRefs.current[index],
         { opacity: 0, y: 40 },
         {
@@ -131,18 +143,23 @@ const ProjectSection = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: projectRefs.current[index],
-            start: "top 85%",
+            // Trigger earlier (as soon as the section enters near the bottom of the viewport)
+            start: "top 98%",
             toggleActions: "play none none reverse",
           },
         }
       );
+      // track for cleanup
+      // @ts-ignore
+      sectionTween &&
+        disposables.push(sectionTween.scrollTrigger || sectionTween);
 
       // Stagger inner elements for a polished feel
       const q = projectRefs.current[index]?.querySelectorAll(
         ".eyebrow, h2, .project-summary, .tags, .detail-block, .cta-button"
       );
       if (q && q.length) {
-        gsap.fromTo(
+        const innerTween = gsap.fromTo(
           q,
           { opacity: 0, y: 10 },
           {
@@ -153,13 +170,38 @@ const ProjectSection = () => {
             ease: "power1.out",
             scrollTrigger: {
               trigger: projectRefs.current[index],
-              start: "top 80%",
+              // Staggered inner elements also trigger a bit earlier
+              start: "top 95%",
               toggleActions: "play none none reverse",
             },
           }
         );
+        // track for cleanup
+        // @ts-ignore
+        innerTween && disposables.push(innerTween.scrollTrigger || innerTween);
       }
     });
+
+    // Recalculate trigger positions after setup (accounts for fonts/images/layout)
+    ScrollTrigger.refresh();
+
+    // Cleanup to avoid lingering triggers on route changes or hot reloads
+    return () => {
+      disposables.forEach((d) => {
+        try {
+          if (d && typeof d.kill === "function") d.kill();
+          // @ts-ignore
+          if (
+            d &&
+            d.scrollTrigger &&
+            typeof d.scrollTrigger.kill === "function"
+          ) {
+            // @ts-ignore
+            d.scrollTrigger.kill();
+          }
+        } catch {}
+      });
+    };
   }, []);
 
   return (

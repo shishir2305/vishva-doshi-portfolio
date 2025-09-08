@@ -18,12 +18,12 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
   background: var(--bg);
   color: #e9ecf1;
-  padding: 56px 24px;
+  padding: 40px 20px;
 }
 
 .row {
   display: grid;
-  gap: 24px;
+  gap: 18px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -35,16 +35,16 @@
 
 .row-bottom {
   grid-template-columns: repeat(5, 1fr);
-  margin-top: 28px; /* spacing between first and second row */
+  margin-top: 18px; /* spacing between first and second row */
 }
 
 .card {
   background: var(--grad-1);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  border-radius: 14px;
   position: relative;
   overflow: hidden;
-  padding: 20px;
+  padding: 16px;
   isolation: isolate;
   transition: transform 0.25s ease, border-color 0.25s ease,
     box-shadow 0.25s ease;
@@ -103,7 +103,7 @@
 
 /* Hero card */
 .hero-card {
-  padding: 24px;
+  padding: 18px;
   /* soft dusk gradient (rose + cyan tints) */
   background: radial-gradient(
       900px 520px at -15% -20%,
@@ -160,7 +160,7 @@
 }
 
 .hero-left h1 {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
   margin: 0 0 6px;
 }
 .hero-left .name {
@@ -175,7 +175,7 @@
 }
 .hero-left .desc {
   color: var(--muted);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   line-height: 1.55;
 }
 
@@ -188,7 +188,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
@@ -212,8 +212,8 @@
 
 .avatar-wrap {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
   margin-inline: auto;
   /* soft floating animation for the profile image */
   animation: soft-bob 6s ease-in-out infinite;
@@ -257,7 +257,7 @@
 /* About card */
 .about-card h3 {
   margin: 6px 0 10px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
 }
 .about-card p {
   color: var(--muted);
@@ -270,7 +270,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #c8d1e6;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin-bottom: 8px;
 }
 .badges {
@@ -282,12 +282,12 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #e9ecf1;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 .badge:hover {
   background: rgba(255, 255, 255, 0.12);
@@ -303,14 +303,14 @@
   text-align: center;
 }
 .time {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 .tz {
   color: var(--muted);
   margin-top: 4px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .now-card {
@@ -324,7 +324,7 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #c8d1e6;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   margin-bottom: 8px;
 }
 .now-header .dot.red {
@@ -347,24 +347,24 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
   color: inherit;
-  padding: 20px;
+  padding: 16px;
   background: var(--grad-1);
   overflow: hidden;
 }
 .link-card .icon-bubble {
   flex: 0 0 auto;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transform: translateY(2px);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   transition: transform 0.25s ease, background-color 0.25s ease,
@@ -372,7 +372,7 @@
 }
 .link-card .title {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1rem;
   letter-spacing: 0.01em;
 }
 .link-card:hover {
@@ -514,17 +514,26 @@
 /* Row 3 - Education and Journey */
 .row-education-journey {
   grid-template-columns: 2fr 1fr;
-  margin-top: 28px;
+  margin-top: 20px;
   align-items: stretch;
+}
+
+/* Let tooltips escape the card bounds and float above neighbors */
+.journey-card {
+  overflow: visible; /* override .card overflow to prevent clipping */
+  z-index: 2; /* create a higher base so tooltip can sit above siblings */
+}
+.journey-card:hover {
+  z-index: 5;
 }
 
 /* Education Card */
 .education-card {
   background: #0f1117;
-  padding: 28px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .education-card::before,
@@ -541,7 +550,7 @@
 
 .education-header h3 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #e9ecf1;
 }
@@ -549,7 +558,7 @@
 .education-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .university-info {
@@ -589,7 +598,7 @@
 
 .university-details h4 {
   margin: 0 0 4px 0;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: #e9ecf1;
 }
@@ -598,7 +607,7 @@
   margin: 0;
   font-style: italic;
   color: #8a8fa3;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .majors-row {
@@ -609,12 +618,12 @@
 }
 
 .major-badge {
-  padding: 8px 16px;
+  padding: 6px 12px;
   background: rgba(100, 100, 100, 0.3);
   border: 1px solid rgba(150, 150, 150, 0.4);
   border-radius: 8px;
   color: #c8d1e6;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
 }
 
@@ -624,7 +633,7 @@
 
 .honors-section h5 {
   margin: 0 0 16px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #e9ecf1;
   text-decoration: underline;
@@ -639,9 +648,9 @@
 }
 
 .honor-badge {
-  padding: 8px 14px;
+  padding: 6px 10px;
   border-radius: 8px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -673,7 +682,7 @@
 }
 .activities-section h5 {
   margin: 0 0 8px 0;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #e9ecf1;
   text-decoration: underline;
@@ -689,9 +698,9 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 10px;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   background: radial-gradient(
       120px 80px at 10% 90%,
       rgba(99, 102, 241, 0.2),
@@ -727,8 +736,8 @@
 .journey-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .journey-dot {
@@ -741,7 +750,7 @@
 
 .journey-header h3 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #e9ecf1;
 }
@@ -756,8 +765,8 @@
 
 .earth-container {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   overflow: visible; /* ensure tooltips aren't clipped */
 }
 
@@ -866,11 +875,11 @@
 /* Tooltip for location dots */
 .dot-tooltip {
   position: absolute;
-  top: 50%;
-  right: calc(100% + 12px);
-  left: auto;
+  top: calc(100% + 12px); /* place below the dot */
+  left: 50%;
+  right: auto;
   bottom: auto;
-  transform: translateY(-50%);
+  transform: translateX(-50%) translateY(6px); /* slight offset for entrance */
   width: 300px;
   background: linear-gradient(
       180deg,
@@ -895,12 +904,12 @@
 .dot-tooltip::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  border-width: 8px 0 8px 8px;
+  top: -8px; /* arrow on top pointing to the dot */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 8px 8px;
   border-style: solid;
-  border-color: transparent transparent transparent rgba(15, 17, 23, 0.98);
+  border-color: transparent transparent rgba(15, 17, 23, 0.98) transparent;
 }
 .country-chip {
   display: inline-flex;
@@ -961,7 +970,7 @@
 /* Show tooltip on hover */
 .location-dot:hover .dot-tooltip {
   opacity: 1;
-  transform: translate(-4px, -50%);
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Responsive tooltip width tuning */

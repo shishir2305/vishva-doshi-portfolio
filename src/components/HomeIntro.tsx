@@ -2,6 +2,7 @@ import { useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "../styles/homeStyles.css";
+import { FaHome, FaUser, FaFolderOpen, FaPaperPlane } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,25 +25,44 @@ const IntroSection = () => {
   };
 
   return (
-    <div className="container" id="home">
+    <div className="intro-container" id="home">
       <div className="intro-section">
-        <div className="hamburger-menu" onClick={toggleMenu}>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
-        </div>
-        <div className={`menu ${menuOpen ? "open" : ""}`}>
-          <a href="#home" onClick={toggleMenu}>
-            Home
+        <button
+          type="button"
+          className={`hamburger-menu ${menuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="sidebar-menu"
+        >
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </button>
+        <div id="sidebar-menu" className={`menu ${menuOpen ? "open" : ""}`}>
+          <a href="#home" className="menu-item" onClick={toggleMenu}>
+            <span className="icon" aria-hidden>
+              <FaHome />
+            </span>
+            <span className="label">Home</span>
           </a>
-          <a href="#about" onClick={toggleMenu}>
-            About
+          <a href="#about" className="menu-item" onClick={toggleMenu}>
+            <span className="icon" aria-hidden>
+              <FaUser />
+            </span>
+            <span className="label">About</span>
           </a>
-          <a href="#projects" onClick={toggleMenu}>
-            Projects
+          <a href="#projects" className="menu-item" onClick={toggleMenu}>
+            <span className="icon" aria-hidden>
+              <FaFolderOpen />
+            </span>
+            <span className="label">Projects</span>
           </a>
-          <a href="#contact" onClick={toggleMenu}>
-            Contact
+          <a href="#contact" className="menu-item" onClick={toggleMenu}>
+            <span className="icon" aria-hidden>
+              <FaPaperPlane />
+            </span>
+            <span className="label">Contact</span>
           </a>
         </div>
         <div className="hero-content">

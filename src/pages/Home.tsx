@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/globals.css";
 import "../styles/homeStyles.css";
 import GreetingsAnimation from "../components/GreetingsAnimation";
 import HomeIntroSection from "../components/HomeIntro";
