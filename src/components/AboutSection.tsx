@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  FaGithub,
   FaLinkedin,
   FaEnvelope,
-  FaCalendarAlt,
   FaFolderOpen,
   FaBriefcase,
   FaTools,
@@ -17,6 +15,7 @@ import {
 } from "react-icons/si";
 import "../styles/aboutStyles.css";
 import profileImage from "../assets/vishva image.jpg";
+import collegeLogo from "../assets/college-logo.webp";
 
 const AboutSection = () => {
   // Live clock (updates every second)
@@ -65,21 +64,17 @@ const AboutSection = () => {
               </p>
 
               <div className="cta-buttons">
-                <a className="btn ghost" href="#" aria-label="GitHub">
-                  <FaGithub /> GitHub
-                </a>
-                <a className="btn ghost" href="#" aria-label="LinkedIn">
-                  <FaLinkedin /> LinkedIn
-                </a>
                 <a
                   className="btn ghost"
-                  href="mailto:hello@example.com"
-                  aria-label="Email"
+                  href="https://www.linkedin.com/in/vishva-doshi30/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
                 >
-                  <FaEnvelope /> Email
+                  <FaLinkedin /> LinkedIn
                 </a>
-                <a className="btn primary" href="#" aria-label="Book a call">
-                  <FaCalendarAlt /> Book a call
+                <a className="btn ghost" href="#" aria-label="Email">
+                  <FaEnvelope /> Email
                 </a>
               </div>
             </div>
@@ -178,9 +173,11 @@ const AboutSection = () => {
           <div className="education-content">
             <div className="university-info">
               <div className="university-logo">
-                <div className="purdue-logo">
-                  <span className="logo-p">P</span>
-                </div>
+                <img
+                  src={collegeLogo}
+                  alt="University logo"
+                  className="university-logo-img"
+                />
               </div>
               <div className="university-details">
                 <h4>Arizona State University</h4>
@@ -197,16 +194,29 @@ const AboutSection = () => {
               </span>
             </div>
 
-            <div className="honors-section">
-              <h5>Honors & Certificate Programs</h5>
-              <div className="honors-badges">
-                <span className="honor-badge dean">🏆 Dean's List</span>
-                <span className="honor-badge data">
-                  📊 Data Science Certificate Program
-                </span>
-                <span className="honor-badge entrepreneur">
-                  🚀 Entrepreneurship & Innovation Certificate Program
-                </span>
+            <div className="activities-section">
+              <h5>Activities</h5>
+              <div className="activities-list">
+                <div className="activity-chip">
+                  <span className="activity-icon" aria-hidden>
+                    🅰️
+                  </span>
+                  <span>Adobe Student Ambassador</span>
+                </div>
+                <div className="activity-chip">
+                  <span className="activity-icon" aria-hidden>
+                    📣
+                  </span>
+                  <span>Director of Marketing for Fulton Student Council</span>
+                </div>
+                <div className="activity-chip">
+                  <span className="activity-icon" aria-hidden>
+                    🧪
+                  </span>
+                  <span>
+                    Research Grant Reviewer for Graduate Student Government
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -224,9 +234,69 @@ const AboutSection = () => {
               <div className="earth">
                 <div className="location-dot india-dot" title="Gujarat, India">
                   <div className="dot-pulse"></div>
+                  <div className="dot-tooltip">
+                    <div className="tooltip-title">
+                      <span className="country-chip">IN</span> Gujarat, India
+                    </div>
+                    <ul className="tooltip-list">
+                      <li>
+                        <span className="emoji-pill">🚀</span>
+                        <span>Known for entrepreneurship & global CEOs</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">💃</span>
+                        <span>Land of Garba & Growth</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🌶️</span>
+                        <span>Spices, startups & stories</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">💻</span>
+                        <span>A blend of culture + code</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🌍</span>
+                        <span>Born here, building everywhere</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div className="location-dot usa-dot" title="Arizona, USA">
                   <div className="dot-pulse"></div>
+                  <div className="dot-tooltip">
+                    <div className="tooltip-title">
+                      <span className="country-chip">US</span> Arizona, USA
+                    </div>
+                    <ul className="tooltip-list">
+                      <li>
+                        <span className="emoji-pill">☀️</span>
+                        <span>
+                          Known for over 300 days of sunshine each year and
+                          stunning desert landscapes
+                        </span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🏜️</span>
+                        <span>Sun, desert, and the Sun Devils</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🧭</span>
+                        <span>The desert city shaping my journey</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🎓</span>
+                        <span>Home to Arizona State University,</span>
+                      </li>
+                      <li>
+                        <span className="emoji-pill">🚀</span>
+                        <span>
+                          Nationally recognized for innovation and
+                          entrepreneurship
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

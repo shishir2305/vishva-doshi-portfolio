@@ -562,6 +562,16 @@
   flex-shrink: 0;
 }
 
+/* University logo image (replaces placeholder block) */
+.university-logo-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain; /* show full logo without cropping */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  background: transparent;
+}
+
 .purdue-logo {
   width: 60px;
   height: 60px;
@@ -657,26 +667,61 @@
   color: #ff69b4;
 }
 
-/* Journey Card */
-.journey-card {
-  background: #0f1117;
-  padding: 28px;
+/* Activities (chip list) */
+.activities-section {
+  margin-top: 8px;
+}
+.activities-section h5 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e9ecf1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(255, 255, 255, 0.25);
+}
+.activities-list {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.activity-chip {
+  display: inline-flex;
   align-items: center;
-  text-align: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  background: radial-gradient(
+      120px 80px at 10% 90%,
+      rgba(99, 102, 241, 0.2),
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #dbe6ff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
-
-.journey-card::before,
-.journey-card:hover::before {
-  opacity: 0 !important;
+.activity-chip:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: radial-gradient(
+      120px 80px at 10% 90%,
+      rgba(99, 102, 241, 0.24),
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.055);
 }
-
-.journey-card:hover {
-  background: #121726;
-  transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+.activity-icon {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  font-size: 0.85rem;
 }
 
 .journey-header {
@@ -706,78 +751,59 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .earth-container {
   position: relative;
   width: 200px;
   height: 200px;
+  overflow: visible; /* ensure tooltips aren't clipped */
 }
 
 .earth {
   width: 100%;
   height: 100%;
-  background: 
-    /* Ocean/water gradient */ radial-gradient(
-      circle at 40% 30%,
-      #2b5f9e,
-      #1c4a78,
-      #0f2a44
+  /* Use provided earth image with a subtle lighting overlay */
+  background: radial-gradient(
+      140% 100% at 65% 30%,
+      rgba(255, 255, 255, 0.08),
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.5) 100%
     ),
-    /* Base darker blue */ #0f2a44;
+    url("../assets/earth-image.png");
+  background-size: cover;
+  background-position: center;
   border-radius: 50%;
   position: relative;
   box-shadow: inset -15px -15px 30px rgba(0, 0, 0, 0.5),
     inset 5px 5px 15px rgba(255, 255, 255, 0.1), 0 0 25px rgba(43, 95, 158, 0.4);
-  overflow: hidden;
+  /* Allow tooltips to overflow the sphere */
+  overflow: visible;
 }
 
 /* More realistic continent shapes */
-.earth::before {
-  content: "";
-  position: absolute;
-  top: 25%;
-  left: 10%;
-  width: 35%;
-  height: 45%;
-  background: #2d5a2d;
-  border-radius: 45% 55% 60% 40%;
-  opacity: 0.9;
-  transform: rotate(-15deg);
-}
-
+/* Disable decorative pseudo-continents now that we use an image */
+.earth::before,
 .earth::after {
-  content: "";
-  position: absolute;
-  top: 30%;
-  right: 15%;
-  width: 40%;
-  height: 50%;
-  background: #2d5a2d;
-  border-radius: 60% 40% 70% 30%;
-  opacity: 0.85;
-  transform: rotate(10deg);
+  content: none !important;
 }
 
-/* Additional continent pieces for more realistic look */
+/* Final earth background + no rotation */
 .earth {
-  background: 
-    /* Small landmass */ radial-gradient(
-      ellipse 20px 15px at 65% 20%,
-      #2d5a2d 40%,
-      transparent 41%
+  background: radial-gradient(
+      140% 100% at 65% 30%,
+      rgba(255, 255, 255, 0.08),
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0.5) 100%
     ),
-    /* Another small piece */
-      radial-gradient(
-        ellipse 15px 25px at 25% 70%,
-        #2d5a2d 40%,
-        transparent 41%
-      ),
-    /* Main ocean gradient */
-      radial-gradient(circle at 40% 30%, #2b5f9e, #1c4a78, #0f2a44);
-  animation: earth-rotate 30s linear infinite;
+    url("../assets/earth-image.png");
+  background-size: cover;
+  background-position: center;
+  animation: none;
 }
 
+/* Generic dot positioned via CSS variables (percent values) */
 .location-dot {
   position: absolute;
   width: 10px;
@@ -785,19 +811,44 @@
   border-radius: 50%;
   z-index: 10;
   border: 2px solid;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  transform: translate(-50%, -50%);
+}
+
+/* Soft ripple rings around the dot */
+.location-dot::before,
+.location-dot::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--ripple, rgba(255, 255, 255, 0.35));
+  opacity: 0;
+  transform: scale(0.6);
+  animation: ripple 3s ease-out infinite;
+  pointer-events: none;
+  z-index: -1; /* behind the dot but above the earth */
+}
+.location-dot::after {
+  animation-delay: 1.5s;
 }
 
 .india-dot {
-  top: 35%;
-  right: 25%;
+  /* Approx position for Gujarat, India on the provided image */
+  --x: 74%;
+  --y: 42%;
+  --ripple: rgba(255, 107, 53, 0.45);
   background: #ff6b35;
   border-color: #ffb347;
   box-shadow: 0 0 12px #ff6b35, 0 0 25px rgba(255, 107, 53, 0.5);
 }
 
 .usa-dot {
-  top: 30%;
-  left: 25%;
+  /* Approx position for Arizona, USA */
+  --x: 26%;
+  --y: 45%;
+  --ripple: rgba(74, 144, 226, 0.45);
   background: #4a90e2;
   border-color: #87ceeb;
   box-shadow: 0 0 12px #4a90e2, 0 0 25px rgba(74, 144, 226, 0.5);
@@ -810,6 +861,114 @@
   background: inherit;
   border: inherit;
   animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* Tooltip for location dots */
+.dot-tooltip {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  left: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+  width: 300px;
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04),
+      rgba(255, 255, 255, 0.02) 30%,
+      transparent
+    ),
+    rgba(15, 17, 23, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  color: #e9ecf1;
+  z-index: 1000; /* sit above cards */
+  white-space: normal;
+  text-align: left; /* left-align content */
+}
+
+.dot-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 8px 0 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(15, 17, 23, 0.98);
+}
+.country-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 18px;
+  padding: 0 6px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #cfd6ff;
+}
+
+/* Tooltip shows beside the dot for all locations */
+
+.tooltip-title {
+  font-weight: 800;
+  font-size: 1rem;
+  margin: 2px 0 10px 0;
+  color: #d6dcf0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tooltip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tooltip-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  color: #d0d7ee;
+}
+
+.emoji-pill {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.95rem;
+}
+
+/* Show tooltip on hover */
+.location-dot:hover .dot-tooltip {
+  opacity: 1;
+  transform: translate(-4px, -50%);
+}
+
+/* Responsive tooltip width tuning */
+@media (max-width: 520px) {
+  .dot-tooltip {
+    width: min(88vw, 320px);
+  }
 }
 
 @keyframes earth-rotate {
@@ -830,6 +989,20 @@
   50% {
     transform: scale(1.4);
     opacity: 0.8;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 
@@ -890,6 +1063,13 @@
     width: 50px;
     height: 50px;
     font-size: 1.6rem;
+  }
+
+  .university-logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: contain;
   }
 
   .university-details h4 {
